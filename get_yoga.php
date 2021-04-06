@@ -1,11 +1,21 @@
 <?php
 require 'settings.php';
 
+$sql = "SELECT*FROM clients" ;
+$stm = $conn->prepare($sql);
+$stm -> execute();
+$clients = $stm->fetchall();
+// echo '<pre>';
+// print_r($result);
+
 $sql = "SELECT*FROM yoga_posi" ;
 $stm = $conn->prepare($sql);
 $stm -> execute();
-$result = $stm->fetchall();
-echo json_encode(($result));
+$yoga_posis = $stm->fetchall();
+
+echo json_encode(array('yoga_posis' => $yoga_posis, 'clients' => $clients));
+
+//echo json_encode(($result));
 
 // $sql = "SELECT*FROM stock ";
 // $result -> $mysqli -> query($sql);

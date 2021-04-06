@@ -59,6 +59,7 @@ if($_POST['type'] === 'stock'){
 
 
     $name_schuler = $_POST['name_schuler'];
+    $id_schuler = $_POST['id_schuler'];
     $obsv_lehrer = $_POST['obsv_lehrer'];
     $obsv_schuler = $_POST['obsv_schuler'];
     $datum = $_POST['datum'];
@@ -67,6 +68,7 @@ if($_POST['type'] === 'stock'){
 
     $sql = "INSERT INTO yoga_archiv (
         name_schuler, 
+        id_schuler,
         obsv_lehrer,
         obsv_schuler,
         positionen,
@@ -74,11 +76,37 @@ if($_POST['type'] === 'stock'){
         datum)
     VALUES (
         '$name_schuler', 
+        '$id_schuler',
         '$obsv_lehrer',
         '$obsv_schuler',
         '$positionen',
         '$preis',
         '$datum')";
+
+    $conn->exec($sql);
+}elseif($_POST['type'] === 'anmelden'){
+    $date1 = strtr($_REQUEST['date'], '/', '-');
+
+
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $date = strtr($_POST['birthday'],'/','-') ;
+    $birthday = date("Y-m-d", strtotime(strtr($_POST['birthday'],'/','-')));
+    $phone = $_POST['phone']; 
+    $mail = $_POST['mail'];
+
+    $sql = "INSERT INTO clients (
+        first_name, 
+        last_name,
+        birthday,
+        phone,
+        mail)
+    VALUES (
+        '$first_name', 
+        '$last_name',
+        '$birthday',
+        '$phone',
+        '$mail')";
 
     $conn->exec($sql);
 }

@@ -22,7 +22,6 @@ class Eingabeformular{
     }
 
     _absenden_event(eingabeformular){
-        console.log(eingabeformular);
         eingabeformular.querySelector('#eingabeformular').addEventListener("submit", e => {
             e.preventDefault() ;
             let formulardaten = this._formular_daten_holen(e);
@@ -45,10 +44,8 @@ class Eingabeformular{
         },
  
       }).done(function(data){
-          console.log(data);
       });
     
-            console.log(e.target.elements.titel.value);
         });
 
 
